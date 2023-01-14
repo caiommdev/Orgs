@@ -10,17 +10,19 @@ import com.example.orgs.R
 import com.example.orgs.ui.model.Product
 
 class ProductListAdapter(
-    private val products: List<Product>,
+    products: List<Product>,
     private val contex: Context
 ) : RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
 
+    private val products = products.toMutableList()
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(product: Product) {
-            val name = itemView.findViewById<TextView>(R.id.name)
+            val name = itemView.findViewById<TextView>(R.id.product_item_name)
             name.text = product.name
-            val description = itemView.findViewById<TextView>(R.id.description)
+            val description = itemView.findViewById<TextView>(R.id.produtc_item_description)
             description.text = product.description
-            val value = itemView.findViewById<TextView>(R.id.value)
+            val value = itemView.findViewById<TextView>(R.id.product_item_value)
             value.text = product.value.toPlainString()
         }
     }
@@ -38,6 +40,12 @@ class ProductListAdapter(
 
     override fun getItemCount(): Int {
         return products.size
+    }
+
+    fun update(allProducts: List<Product>) {
+        this.products.clear()
+        this.products.addAll(allProducts)
+        notifyDataSetChanged()
     }
 
 }
