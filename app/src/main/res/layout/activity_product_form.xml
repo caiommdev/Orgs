@@ -15,13 +15,12 @@
             android:id="@+id/formName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:hint="Name"
             android:inputType="text"
-            android:layout_margin="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/formDescription"
@@ -29,10 +28,9 @@
             android:layout_height="wrap_content"
             android:hint="Description"
             android:inputType="text"
-            app:layout_constraintStart_toStartOf="@id/formName"
-            app:layout_constraintTop_toBottomOf="@+id/formName"
             app:layout_constraintEnd_toEndOf="@id/formName"
-            />
+            app:layout_constraintStart_toStartOf="@id/formName"
+            app:layout_constraintTop_toBottomOf="@+id/formName" />
 
         <EditText
             android:id="@+id/formValue"
@@ -40,10 +38,9 @@
             android:layout_height="wrap_content"
             android:hint="Value"
             android:inputType="numberDecimal"
-            app:layout_constraintStart_toStartOf="@+id/formDescription"
-            app:layout_constraintTop_toBottomOf="@+id/formDescription"
             app:layout_constraintEnd_toEndOf="@+id/formDescription"
-            />
+            app:layout_constraintStart_toStartOf="@+id/formDescription"
+            app:layout_constraintTop_toBottomOf="@+id/formDescription" />
 
         <Button
             android:id="@+id/formButton"
@@ -51,12 +48,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="SAVE"
-            app:layout_constraintVertical_bias="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/formValue"
-            />
+            app:layout_constraintVertical_bias="1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
