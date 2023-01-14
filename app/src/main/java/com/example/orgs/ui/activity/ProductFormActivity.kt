@@ -1,11 +1,9 @@
 package com.example.orgs.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import com.example.orgs.R
 import com.example.orgs.dao.ProductsDao
 import com.example.orgs.ui.model.Product
@@ -16,30 +14,35 @@ class ProductFormActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        configSaveButton()
+    }
 
-        val saveButton = findViewById<Button>(R.id.formButton)
+    private fun configSaveButton () {
+        val dao = ProductsDao()
+        val saveButton = findViewById<Button>(R.id.product_form_button)
         saveButton.setOnClickListener {
-            val formName = findViewById<EditText>(R.id.formName)
-            val productName = formName.text.toString()
 
-            val formDescriptor = findViewById<EditText>(R.id.formDescription)
-            val productDescriptor = formDescriptor.text.toString()
-
-            val formValue = findViewById<EditText>(R.id.formValue)
-            val valueInText = formValue.text.toString()
-            val productValue = if (valueInText.isBlank()) {
-                BigDecimal.ZERO
-            } else {
-                BigDecimal(valueInText)
-            }
-
-
-            val product =
-                Product(name = productName, description = productDescriptor, value = productValue)
-
-            val dao = ProductsDao()
+            val product = createProduct()
             dao.addProduct(product)
             finish()
         }
+    }
+
+    private fun createProduct() : Product {
+        val formName = findViewById<EditText>(R.id.product_form_name)
+        val productName = formName.text.toString()
+
+        val formDescriptor = findViewById<EditText>(R.id.product_form_description)
+        val productDescriptor = formDescriptor.text.toString()
+
+        val formValue = findViewById<EditText>(R.id.product_form_value)
+        val valueInText = formValue.text.toString()
+        val productValue = if (valueInText.isBlank()) {
+            BigDecimal.ZERO
+        } else {
+            BigDecimal(valueInText)
+        }
+
+        return Product(name = productName, description = productDescriptor, value = productValue)
     }
 }
